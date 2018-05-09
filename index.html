@@ -5,7 +5,94 @@ A Simple HTML Document
 </title>
 </head>
 <body>
-<p>This is a very simple HTML document</p>
-<p>It only has two paragraphs</p>
+  <!-- Styles -->
+  <style>
+  #chartdiv {
+    width: 100%;
+    height: 500px;
+  }
+  </style>
+
+  <!-- Resources -->
+  <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+  <script src="https://www.amcharts.com/lib/3/gantt.js"></script>
+  <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+  <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+  <!-- Chart code -->
+  <script>
+  var chart = AmCharts.makeChart( "chartdiv", {
+    "type": "gantt",
+    "theme": "light",
+    "marginRight": 70,
+    "period": "DD",
+    "dataDateFormat": "YYYY-MM-DD",
+    "columnWidth": 0.5,
+    "valueAxis": {
+      "type": "date"
+    },
+    "brightnessStep": 7,
+    "graph": {
+      "fillAlphas": 1,
+      "lineAlpha": 1,
+      "lineColor": "#fff",
+      "fillAlphas": 0.85,
+      "balloonText": "<b>[[task]]</b>:<br />[[open]] -- [[value]]"
+    },
+    "rotate": true,
+    "categoryField": "category",
+    "segmentsField": "segments",
+    "colorField": "color",
+    "startDateField": "start",
+    "endDateField": "end",
+    "dataProvider": [ {
+      "category": "Meeting",
+      "segments": [ {"start": "43228","end": "43229", "color": "#993366","task": "Story Time Meeting"},
+{"start": "43228","end": "43229", "color": "#990099","task": "Scope Confirmed"},
+{"start": "43228","end": "43229", "color": "#9900CC","task": "Target End Date Confirmed "}
+ ]
+    }, {
+      "category": "Development",
+      "segments": [ {"start": "43229","end": "43237", "color": "#FF9933","task": "Development"},
+{"start": "43241","end": "43246", "color": "#FF9966","task": "Bug Fixes"},
+{"start": "43249","end": "43249.5", "color": "#FF9999","task": "Move Latest Dev to Release"}
+ ]
+    }, {
+      "category": "Configuration",
+      "segments": [ {"start": "43230","end": "43240", "color": "#0000CC","task": "Config"}
+ ]
+    }, {
+      "category": "Test",
+      "segments": [ {"start": "43230","end": "43242", "color": "#33CC66","task": "Testing"},
+{"start": "43250","end": "43252", "color": "#33CC99","task": "Test Release Branch"}
+ ]
+    }, {
+      "category": "Launch",
+      "segments": [ {"start": "43252","end": "43253", "color": "#003300","task": "Release moved to Live"}
+ ]
+    } ],
+    "valueScrollbar": {
+      "autoGridCount": true
+    },
+    "chartCursor": {
+      "cursorColor": "#55bb76",
+      "valueBalloonsEnabled": false,
+      "cursorAlpha": 0,
+      "valueLineAlpha": 0.5,
+      "valueLineBalloonEnabled": true,
+      "valueLineEnabled": true,
+      "zoomable": false,
+      "valueZoomable": true
+    },
+    "export": {
+      "enabled": true
+    }
+  } );
+  </script>
+
+  <!-- HTML -->
+  <div id="chartdiv"></div>
 </body>
 </html>
